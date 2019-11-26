@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_pass_data_to_widgets/second_page.dart';
+
+import 'model/data.dart';
 
 void main() => runApp(MyApp());
+
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
@@ -18,6 +22,8 @@ class MyApp extends StatelessWidget {
 
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key key, this.title}) : super(key: key);
+
+  final data = Data(text : "Lorem Ipsum",counter: 2,dateTime : "aaaaa");
 
   final String title;
 
@@ -55,7 +61,13 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => SecondPage(data: widget.data,)),
+          );
+        },
         tooltip: 'Increment',
         child: Icon(Icons.add),
       ), // This trailing comma makes auto-formatting nicer for build methods.
